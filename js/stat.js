@@ -42,12 +42,9 @@ window.renderStatistics = (ctx, names, times) => {
   for (let i = 0; i < names.length; i++) {
     const BAR_HEIGHT_X = (BAR_HEIGHT * times[i].toFixed(0)) / getMaxElement(times);
 
-    let shade = `hsla` + `(` + `237, ` + `98%, ` + `35%, ` + String(Math.random() + 0.1) + `)`;
-    if (names[i] === `Вы`) {
-      shade = `rgba(255, 0, 0, 1)`;
-    }
+    let shade = (names[i] === `Вы`) ? `rgba(255, 0, 0, 1)` : `hsla(237, 98%, 35%, ${String(Math.random() + 0.1)})`;
 
-    ctx.fillText(times[i].toFixed(0), BAR_X + i * (GAP_WIDTH + BAR_WIDTH), CLOUD_Y + 2 * TEXT_HEIGHT + GAP);
+    ctx.fillText(times[i].toFixed(0), BAR_X + i * (GAP_WIDTH + BAR_WIDTH), CLOUD_Y + 2 * TEXT_HEIGHT + GAP + BAR_HEIGHT - BAR_HEIGHT_X);
     ctx.fillStyle = shade;
     ctx.fillRect(BAR_X + i * (GAP_WIDTH + BAR_WIDTH), CLOUD_Y + 3 * TEXT_HEIGHT + GAP + BAR_HEIGHT - BAR_HEIGHT_X, BAR_WIDTH, BAR_HEIGHT_X);
     ctx.fillStyle = `black`;
